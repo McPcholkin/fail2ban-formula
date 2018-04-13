@@ -20,11 +20,17 @@
         'group': 'root',
         'mode': '644',
     },
-}, merge=salt['pillar.get']('fail2ban:lookup')) %}
+}, grain='os_family') %}
+
+
+{# start with defaults, merge osmappings, and finally pillars #}
+{% import_yaml "fail2ban/defaults.yaml" as defaults %}
+{% do defaults.fail2ban.ng.lookup.update( os_family_map ) %}
+
 
 {% set fail2ban = salt['pillar.get'](
         'fail2ban:ng',
-        default=os_family_map,
+        default=defaults.fail2ban.ng,
         merge=True
     )
 %}

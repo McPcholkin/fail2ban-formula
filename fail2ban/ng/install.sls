@@ -5,4 +5,4 @@
 
 fail2ban.ng.install:
   pkg.installed:
-    - name: {{ fail2ban.package }}
+    - name: {{ fail2ban.lookup.package }}

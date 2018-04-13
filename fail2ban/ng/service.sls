@@ -4,13 +4,13 @@
 {% from "fail2ban/ng/map.jinja" import fail2ban with context %}
 
 fail2ban.ng.service:
-{% if ( 'enabled' in fail2ban and fail2ban.enabled ) or ('enabled' not in fail2ban ) %}
+{% if fail2ban.enabled %}
     service.running:
-        - name: {{ fail2ban.service }}
+        - name: {{ fail2ban.lookup.service }}
         - enable: True
         - require:
-            - pkg: {{ fail2ban.package }}
-{% elif 'enabled' in fail2ban and not fail2ban.enabled %}
+            - pkg: {{ fail2ban.lookup.package }}
+{% elif fail2ban.enabled == 'False' %}
     service.dead:
         - name: {{ fail2ban.service }}
         - enable: False

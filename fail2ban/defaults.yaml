@@ -1,3 +1,5 @@
+# Default lookup dictionary
+
 fail2ban:
   lookup:
     config:
@@ -43,9 +45,8 @@ fail2ban:
 
     # fail2ban.local
     config:
-
       # FTP-style
-      source_path: salt://path-to-fail2ban-file
+      #source_path: salt://path-to-fail2ban-file
 
       # Template-style
       loglevel: ERROR
@@ -54,8 +55,8 @@ fail2ban:
     # jail.local
     jails:
       # FTP-style
-      source_path: salt://path-to-jail-file
-      
+      #source_path: salt://path-to-jail-file
+
       # Template-style
       DEFAULT:
         ignoreip: 127.0.0.1
@@ -74,7 +75,6 @@ fail2ban:
         logpath: /var/log/auth.log
         maxretry: 6
         port: ssh
-
     # action.d
     actions:
 
@@ -105,3 +105,4 @@ fail2ban:
       test-filter:
         config:
           source_path: salt://path-to-filter-file
+

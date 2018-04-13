@@ -47,7 +47,7 @@ In the ``pillar.example``, note that the iptable action uses ``port=ssh`` (lower
 Next-generation, alternate approach
 ===================================
 
-The following states provide an alternate approach to managing fail2ban. Tested in Ubuntu 14/16 and CentOS 6/7.
+The following states provide an alternate approach to managing fail2ban. Tested in Ubuntu 14/16, CentOS 6/7 and Debian 9.
 
 .. contents::
     :local:
@@ -66,6 +66,8 @@ Install the ``fail2ban`` package.
 ----------------------
 
 Configure fail2ban creating a ``jail.local`` file based on pillar data that overrid ``jail.conf``. It also creates a ``file.local`` per action/filter. Either in jails, actions or filters is possible to setup a ``source_path`` options to upload your configuration directly (see ``pillar.example``). It is also possible to remove either actions or filters setting up ``enabled: False`` in it section (see ``pillar.example``).
+
+Now pillar data is fully optional and modualr,  only defined in pillar config files whill be managed, not defined parameters get from defaults.yaml (pillar now may be short including only diff).
 
 Keep in mind that in ng states ``lookup``, ``config``, ``jails``, ``actions`` and ``filters`` are at the same level (in the old states, all the sections are under ``lookup``:
 
